@@ -1,3 +1,22 @@
+wave Hi, I’m @ctafsiras
+eyes I’m interested in Technology.
+seedling I’m currently learning Web Developmment, Digital Marketing and Blockchain Development.
+revolving_hearts I’m looking to collaborate on Business.
+mailbox How to reach me ... go any social media and search for "ctafsiras".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
