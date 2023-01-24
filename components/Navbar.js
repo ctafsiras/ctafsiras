@@ -10,7 +10,7 @@ const Navbar = () => {
                     <div className="w-10 rounded-full mr-2">
                         <Image width={1} height={1} alt='Chowdhury Tafsir Ahmed Siddiki' src="/favicon.ico" />
                     </div>
-                    <span className='text-lg lg:text-xl'>Chowdhury Tafsir Ahmed Siddiki</span>
+                    <span className='text-sm lg:text-xl'>Chowdhury Tafsir Ahmed Siddiki</span>
                     </Link>
             </div>
             <div className="hidden lg:block flex-none">
