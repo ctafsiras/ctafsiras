@@ -3,6 +3,10 @@ import Link from 'next/link';
 import React from 'react';
 
 const Navbar = () => {
+    const menuItems=[
+        {name: "Tools", link: 'tools'},
+        {name: "Articles", link: 'articles'},
+    ]
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
@@ -15,8 +19,7 @@ const Navbar = () => {
             </div>
             <div className="hidden sm:block flex-none">
                 <ul className="menu menu-horizontal px-1">
-                    <li><Link href='/tools'>Tools</Link></li>
-                    <li><Link href='/articles'>Articles</Link></li>
+                    {menuItems.map((item, i)=><li key={i}><Link href={item.link}>{item.name}</Link></li>)}
                 </ul>
             </div>
 
@@ -26,8 +29,7 @@ const Navbar = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
                 </label>
                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><Link href='/tools'>Tools</Link></li>
-                    <li><Link href='/articles'>Articles</Link></li>
+                {menuItems.map((item, i)=><li key={i}><Link href={item.link}>{item.name}</Link></li>)}
                 </ul>
             </div>
 
