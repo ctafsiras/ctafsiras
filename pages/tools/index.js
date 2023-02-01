@@ -2,6 +2,23 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 export default function Home() {
+    const tools = [
+        {
+            name: 'Age Calculator',
+            description: 'If a dog chews shoes whose shoes does he choose?',
+            link: 'tools/age-calculator'
+        },
+        {
+            name: 'Love Calculator',
+            description: 'If a dog chews shoes whose shoes does he choose?',
+            link: 'tools/love-calculator'
+        },
+        {
+            name: 'Love Quotes Generator',
+            description: 'If a dog chews shoes whose shoes does he choose?',
+            link: 'tools/love-quotes-generator'
+        },
+    ]
     return (
         <>
             <Head>
@@ -11,14 +28,20 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <h1>This is tool page </h1>
-            <div className="card w-96 bg-base-100 shadow-xl">
-                <div className="card-body">
-                    <h2 className="card-title">Age Calculator</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div className="card-actions justify-end">
-                        <Link href='tools/age-calculator' className="btn btn-primary">Open</Link>
-                    </div>
-                </div>
+            <div className='flex gap-3 justify-center flex-wrap'>
+                {
+                    tools.map((tool, index) =>
+                        <div key={index} className="card w-96 bg-base-100 shadow-xl">
+                            <div className="card-body">
+                                <h2 className="card-title">{tool.name}</h2>
+                                <p>I{tool.description}</p>
+                                <div className="card-actions justify-end">
+                                    <Link href={tool.link} className="btn btn-primary">Open</Link>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
             </div>
         </>
     )
