@@ -32,7 +32,7 @@ const LoveCalculator = () => {
                     />
                 </div>
                 <div className="mb-5">
-                    <label htmlFor="name2" className="block font-bold mb-2">Partner's Name:</label>
+                    <label htmlFor="name2" className="block font-bold mb-2">Partners Name:</label>
                     <input
                         type="text"
                         id="name2"
