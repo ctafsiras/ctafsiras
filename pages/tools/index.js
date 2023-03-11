@@ -18,6 +18,11 @@ export default function Home() {
             description: 'If a dog chews shoes whose shoes does he choose?',
             link: 'tools/love-quotes-generator'
         },
+        {
+            name: 'Payment',
+            description: 'If a dog chews shoes whose shoes does he choose?',
+            link: 'tools/payment'
+        },
     ]
     return (
         <>
