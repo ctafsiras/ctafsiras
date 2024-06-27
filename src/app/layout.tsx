@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Chowdhury Tafsir Ahmed Siddiki",
   description: "Chowdhury Tafsir Ahmed Siddiki's Portfolio Website",
+  other: {
+    "openai-domain-verification": "dv-TybiqYm0NMVbpGPIOR2z5bx1",
+  },
 };
 
 export default function RootLayout({
