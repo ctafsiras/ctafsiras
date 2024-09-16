@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Poppins as Font } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const font = Font({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -17,11 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`container mx-auto ${font.className} bg-gray-600`}>
-        <main className="border-r-l border-red-500 bg-gray-100">
-          {children}
-        </main>
+    <html lang="en" suppressHydrationWarning>
+      <body className={font.className}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

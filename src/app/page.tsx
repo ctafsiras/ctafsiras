@@ -1,20 +1,21 @@
-// import { motion } from "framer-motion"
-
-// React Server Components
-import * as motion from "framer-motion/client";
+import { Hero } from "@/components/hero";
+import { About } from "@/components/about";
+import { Experience } from "@/components/experience";
+import { Projects } from "@/components/projects";
+import { Skills } from "@/components/skills";
+import { Education } from "@/components/education";
+import { Contact } from "@/components/contact";
 
 export default function Home() {
   return (
-    <div>
-      <motion.div
-        className="bordefr"
-        // initial={ { text: "C Tafsir A S" }}
-        // whileHover={{ text: "Chy Tafsir Ahm Sid" }}
-        // transition={{ duration: 0.3 }}
-      >
-        Hi Ki obostha
-        {/* {(props) => <p>{props.text}</p>} */}
-      </motion.div>
+    <div className="container mx-auto px-4">
+      <Hero />
+      <About />
+      <Experience />
+      <Projects />
+      <Skills />
+      <Education />
+      <Contact />
     </div>
   );
 }
