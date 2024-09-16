@@ -1,5 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "./ui/card";
+import dynamic from "next/dynamic";
+const ClientReOrder = dynamic(() => import("./reorder"), { ssr: false });
 
 export function Skills() {
   const skillCategories = [
@@ -43,12 +45,12 @@ export function Skills() {
                 <h3 className="text-xl font-semibold mb-2">
                   {category.category}
                 </h3>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, idx) => (
-                    <Badge key={idx} variant="outline">
-                      {skill}
-                    </Badge>
-                  ))}
+                <div>
+                  <ClientReOrder
+                    className="cursor-grab h-8"
+                    parentClassName="flex flex-wrap gap-2"
+                    initialItems={category.skills}
+                  />
                 </div>
               </div>
             ))}
@@ -57,4 +59,11 @@ export function Skills() {
       </Card>
     </section>
   );
+}
+{
+  /* {category.skills.map((skill, idx) => (
+                    <Badge key={idx} variant="outline">
+                      {skill}
+                    </Badge>
+                  ))} */
 }
