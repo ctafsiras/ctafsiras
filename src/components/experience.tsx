@@ -29,9 +29,9 @@ export function Experience() {
       <h2 className="text-3xl font-bold text-center mb-8">
         Professional Experience
       </h2>
-      <div className="space-y-6">
+      <div className="grid gap-6 md:grid-cols-2">
         {experiences.map((exp, index) => (
-          <Card key={index}>
+          <Card key={index} className="flex flex-col">
             <CardHeader>
               <CardTitle>{exp.company}</CardTitle>
               <p className="text-sm text-muted-foreground">
