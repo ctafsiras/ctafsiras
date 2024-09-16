@@ -41,7 +41,9 @@ export function Experience() {
             <CardContent>
               <ul className="list-disc pl-5 space-y-2">
                 {exp.responsibilities.map((resp, idx) => (
-                  <li key={idx}>{resp}</li>
+                  <li key={idx} className="text-justify">
+                    {resp}
+                  </li>
                 ))}
               </ul>
             </CardContent>

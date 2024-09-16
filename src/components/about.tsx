@@ -9,7 +9,7 @@ export function About() {
           <CardTitle>A Dedicated Full Stack Developer</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-justify">
             Currently working at Legal Fist, I am passionate about continuous
             learning, exploring new technologies, and creating innovative
             solutions to solve real-world problems. With a background in

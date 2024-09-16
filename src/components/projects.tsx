@@ -72,7 +72,9 @@ export function Projects() {
               </div>
               <ul className="list-disc pl-5 space-y-2">
                 {project.features.map((feature, idx) => (
-                  <li key={idx}>{feature}</li>
+                  <li key={idx} className="text-justify">
+                    {feature}
+                  </li>
                 ))}
               </ul>
             </CardContent>
