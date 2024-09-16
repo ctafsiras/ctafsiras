@@ -41,11 +41,6 @@ export const TypewriterEffect = ({
             <span key={`word-${wordIndex}`} className="inline-block">
               {word.map((letter, letterIndex) => (
                 <motion.span
-                  transition={{
-                    duration: 0.8,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
                   key={`letter-${letterIndex}`}
                   className={`opacity-0 ${words[wordIndex].className}`}
                 >
@@ -66,7 +61,7 @@ export const TypewriterEffect = ({
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
+        transition={{ duration: 0.2, repeat: Infinity, repeatType: "reverse" }}
         className={`inline-block rounded-sm w-[4px] h-4 md:h-6 lg:h-10 bg-primary ${cursorClassName}`}
       ></motion.span>
     </div>
