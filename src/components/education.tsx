@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function Education() {
   return (
-    <section id="education" className="py-16">
+    <section id="education" className="py-16 max-w-3xl mx-auto">
       <h2 className="text-3xl font-bold text-center mb-8">Education</h2>
       <Card>
         <CardHeader>
