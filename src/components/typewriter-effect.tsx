@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion, stagger, useAnimate } from "framer-motion";
+import { motion, stagger, useAnimate, useScroll } from "framer-motion";
 
 export const TypewriterEffect = ({
   words,
@@ -17,6 +17,7 @@ export const TypewriterEffect = ({
 }) => {
   const [scope, animate] = useAnimate();
   const wordsArray = words.map((word) => word.text.split(""));
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     animate(
@@ -34,11 +35,17 @@ export const TypewriterEffect = ({
   const renderWords = () => {
     return (
       <motion.div ref={scope} className="inline">
+        <motion.div style={{ scaleX: scrollYProgress }} />
         {wordsArray.map((word, wordIndex) => {
           return (
             <span key={`word-${wordIndex}`} className="inline-block">
               {word.map((letter, letterIndex) => (
                 <motion.span
+                  transition={{
+                    duration: 0.8,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
                   key={`letter-${letterIndex}`}
                   className={`opacity-0 ${words[wordIndex].className}`}
                 >
@@ -54,7 +61,7 @@ export const TypewriterEffect = ({
   };
 
   return (
-    <div className={`${className}`}>
+    <div className={`${className} items-center flex justify-center`}>
       {renderWords()}
       <motion.span
         initial={{ opacity: 0 }}

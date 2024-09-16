@@ -11,12 +11,7 @@ export function Hero() {
     },
     {
       text: "Developer",
-    },
-    {
-      text: "Problem",
-    },
-    {
-      text: "Solver",
+      className: "text-[#F59E0B]",
     },
   ];
 
@@ -25,7 +20,7 @@ export function Hero() {
       <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
         Chowdhury Tafsir Ahmed Siddiki
       </h1>
-      <div className="mt-4 h-[40px] lg:h-[56px]">
+      <div className="mt-4 h-[40px] lg:h-[56px] md:text-4xl">
         <TypewriterEffect words={words} />
       </div>
       <p className="mx-auto mt-4 max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
@@ -37,7 +32,10 @@ export function Hero() {
           <a href="#contact">Contact Me</a>
         </Button>
         <Button variant="outline" asChild>
-          <a href="/resume.pdf" download>
+          <a
+            href="https://docs.google.com/document/d/1kNpOqud5V7HCxpAnoq9qzocPyb3ygOaXYb3ZE9ID0AI/export?format=pdf"
+            download
+          >
             Download Resume
           </a>
         </Button>
