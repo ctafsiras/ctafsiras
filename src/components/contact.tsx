@@ -21,15 +21,19 @@ export function Contact() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form className="space-y-4">
+          <form
+            className="space-y-4"
+            action="mailto:ctafsiras@gmail.com"
+            method="GET"
+          >
             <div>
               <Input placeholder="Your Name" />
             </div>
             <div>
-              <Input type="email" placeholder="Your Email" />
+              <Input placeholder="Subject" name="subject" required />
             </div>
             <div>
-              <Textarea placeholder="Your Message" />
+              <Textarea placeholder="Your Message" name="body" required />
             </div>
             <Button type="submit" className="w-full">
               Send Message

@@ -20,7 +20,7 @@ export function Hero() {
       <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
         Chowdhury Tafsir Ahmed Siddiki
       </h1>
-      <div className="mt-4 h-[40px] lg:h-[56px] md:text-4xl">
+      <div className="mt-4 h-[40px] lg:h-[56px] text-xl md:text-4xl">
         <TypewriterEffect words={words} />
       </div>
       <p className="mx-auto mt-4 max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
