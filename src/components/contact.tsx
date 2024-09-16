@@ -27,7 +27,7 @@ export function Contact() {
             method="GET"
           >
             <div>
-              <Input placeholder="Your Name" />
+              <Input placeholder="Your Name" name="name" required />
             </div>
             <div>
               <Input placeholder="Subject" name="subject" required />

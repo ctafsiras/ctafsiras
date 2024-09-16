@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import ScrollTracker from "@/components/scroll-tracker";
 
 const font = Font({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={font.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ScrollTracker />
           <div className="flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-grow">{children}</main>
