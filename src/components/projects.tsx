@@ -12,6 +12,30 @@ import { Badge } from "@/components/ui/badge";
 export function Projects() {
   const projects = [
     {
+      title: "Baby Care Store",
+      description: "An eccommerce web application for baby care accessories.",
+      technologies: [
+        "Next.js",
+        "React",
+        "Redux",
+        "TypeScript",
+        "Tailwind",
+        "ShadCN",
+        "Prisma",
+        "PostgreSQL",
+        "GitHub",
+        "Vercel",
+      ],
+      features: [
+        "Implemented eccommerce features including view products, add to cart, and checkout.",
+        "Dashboard for use to manage previous order and current order status",
+        "Implemented Dashboard for admin to manage products and users. Add new products. Manage All order status",
+        "Deployed the application on Vercel with a PostgreSQL database, integrated with GitHub for continuous integration and deployment.",
+      ],
+      github: "https://github.com/ctafsiras/baby-care-store",
+      live: "https://baby-care-store-three.vercel.app",
+    },
+    {
       title: "Legal Fist Exam",
       description: "A MCQ based exam taking web application for law students.",
       technologies: [
