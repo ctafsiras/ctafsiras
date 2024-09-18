@@ -48,7 +48,7 @@ A dedicated Full Stack Developer, passionate about exploring new technologies, a
 
 ## 📊 GitHub Stats:
 
-<center>
+<div align="center">
 
 ![](https://github-readme-stats.vercel.app/api?username=ctafsiras&theme=dark&hide_border=false&include_all_commits=false&count_private=false)
 
@@ -56,4 +56,4 @@ A dedicated Full Stack Developer, passionate about exploring new technologies, a
 
 ![](https://github-readme-stats.vercel.app/api/top-langs/?username=ctafsiras&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
 
-</center>
+</div>
