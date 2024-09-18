@@ -17,7 +17,7 @@ mailbox How to reach me ... go any social media and search for "ctafsiras".
   <img alig src="https://github-profile-trophy.vercel.app/?username=ctafsiras&theme=onedark&column=-1" />
 </p>
 
-[![activity graph](https://github-readme-activity-graph.vercel.app/graph?username=ctafsiras&theme=github-dark-dimmed&custom_title=Guilyx%20Activity%20Graph&hide_border=true)](https://github.com/ashutosh00710/github-readme-activity-graph)
+[![activity graph](https://github-readme-activity-graph.vercel.app/graph?username=ctafsiras&theme=github-dark-dimmed&custom_title=Tafsir's%20Activity%20Graph&hide_border=true)](https://github.com/ashutosh00710/github-readme-activity-graph)
 
 ## 💻 Tech Stack:
 
