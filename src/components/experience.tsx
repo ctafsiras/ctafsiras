@@ -5,7 +5,7 @@ export function Experience() {
     {
       company: "Legal Fist",
       position: "Full Stack Developer",
-      duration: "Jun 2022 - Present (Part-time)",
+      duration: "Jun 2022 - Sep 2023 (Contractual)",
       responsibilities: [
         "Designed and developed over 20 static and dynamic pages using Next.js, React, and Tailwind CSS.",
         "Deployed applications using various frameworks such as Laravel, WordPress, and Next.js on DigitalOcean with an Ubuntu server.",

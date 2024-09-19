@@ -34,7 +34,6 @@ export function Hero() {
         <Button variant="outline" asChild>
           <a
             href="https://docs.google.com/document/d/1kNpOqud5V7HCxpAnoq9qzocPyb3ygOaXYb3ZE9ID0AI/export?format=pdf"
-            download
           >
             Download Resume
           </a>
