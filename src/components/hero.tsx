@@ -29,7 +29,7 @@ export function Hero() {
       </p>
       <div className="mt-8 flex justify-center gap-4">
         <Button asChild>
-          <a href="#contact">Contact Me</a>
+          <a target="_blank" href="https://drive.google.com/file/d/1kNpOqud5V7HCxpAnoq9qzocPyb3ygOaXYb3ZE9ID0AI/preview">View Resume</a>
         </Button>
         <Button variant="outline" asChild>
           <a
