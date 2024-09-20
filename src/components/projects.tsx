@@ -23,14 +23,10 @@ export function Projects() {
         "ShadCN",
         "Prisma",
         "PostgreSQL",
-        "GitHub",
-        "Vercel",
       ],
       features: [
-        "Implemented eccommerce features including view products, add to cart, and checkout.",
-        "Dashboard for use to manage previous order and current order status",
-        "Implemented Dashboard for admin to manage products and users. Add new products. Manage All order status",
-        "Deployed the application on Vercel with a PostgreSQL database, integrated with GitHub for continuous integration and deployment.",
+        "Implemented ecommerce features including view products, add to cart, and checkout. Dashboard for use to manage previous order and current order status.",
+        "Implemented Dashboard for admin to manage products and users. Add new products. Manage all order status",
       ],
       github: "https://github.com/ctafsiras/baby-care-store",
       live: "https://baby-care-store-three.vercel.app",
@@ -48,10 +44,10 @@ export function Projects() {
         "Ubuntu",
       ],
       features: [
-        "Implemented an MCQ exam feature with a timer, instant result display, and a report card for exam history.",
+        "Implemented an MCQ exam feature with a timer, instant result display, and a report card for exam history. Where almost 440 students gave exams over 3000 times.",
         "Deployed the application on Digital Ocean with an Ubuntu server, integrated with GitHub for continuous integration and deployment.",
       ],
-      github: "https://github.com/ctafsiras/legalfist-exam.git",
+      github: "",
       live: "https://exam.legalfist.com",
     },
     {
@@ -103,7 +99,7 @@ export function Projects() {
               </ul>
             </CardContent>
             <CardFooter className="flex justify-between">
-              <Button asChild variant="outline">
+              <Button disabled={!project.github} asChild variant="outline">
                 <a
                   href={project.github}
                   target="_blank"

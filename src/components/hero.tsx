@@ -24,8 +24,8 @@ export function Hero() {
         <TypewriterEffect words={words} />
       </div>
       <p className="mx-auto mt-4 max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-        Passionate about continuous learning, exploring new technologies, and
-        creating innovative solutions to solve real-world problems.
+      A dedicated Full Stack Developer, passionate about continuous learning, exploring new technologies,
+and creating innovative solutions to solve real-world problems.
       </p>
       <div className="mt-8 flex justify-center gap-4">
         <Button asChild>

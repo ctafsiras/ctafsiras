@@ -6,12 +6,10 @@ const ClientReOrder = dynamic(() => import("./reorder"), { ssr: false });
 export function Skills() {
   const skillCategories = [
     {
-      category: "Languages",
-      skills: ["JavaScript", "TypeScript", "Python", "C++"],
-    },
-    {
       category: "Frontend",
       skills: [
+        "JavaScript",
+        "TypeScript",
         "React",
         "Next.js",
         "Tailwind CSS",
@@ -22,15 +20,19 @@ export function Skills() {
     },
     {
       category: "Backend",
-      skills: ["Node.js", "Express.js", "Prisma", "Mongoose"],
+      skills: ["Node.js", "Express.js", "Prisma", "Mongoose", "JWT", "Firebase", "NextAuth/Authjs"],
     },
     {
       category: "Database",
-      skills: ["MySQL", "MongoDB", "PostgreSQL"],
+      skills: ["MongoDB", "PostgreSQL", "MySQL"],
     },
     {
       category: "DevOps",
-      skills: ["Git", "Github", "DigitalOcean", "Ubuntu", "Vercel", "Firebase"],
+      skills: ["Git", "Github", "DigitalOcean", "Ubuntu", "Vercel"],
+    },
+    {
+      category: "Interpersonal Skills",
+      skills: ["Diligent", "Problem Solver", "Highly Accountable", "Active Listener", "Team Player"],
     },
   ];
 

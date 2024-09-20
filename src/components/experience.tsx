@@ -7,9 +7,9 @@ export function Experience() {
       position: "Full Stack Developer",
       duration: "Jun 2022 - Sep 2023 (Contractual)",
       responsibilities: [
-        "Designed and developed over 20 static and dynamic pages using Next.js, React, and Tailwind CSS.",
-        "Deployed applications using various frameworks such as Laravel, WordPress, and Next.js on DigitalOcean with an Ubuntu server.",
-        "Resolved bugs related to the UI, server, and associated tools.",
+        "Designed and developed over 20 static and dynamic pages using Next.js, React, and Tailwind.",
+        "Deployed applications using frameworks like Laravel, WordPress, and Next.js on DigitalOcean. Learned the process on the go within 7 days.",
+        "Resolved bugs related to the UI, functionalities, server, and associated tools within the day.",
       ],
     },
     {
@@ -17,9 +17,9 @@ export function Experience() {
       position: "Accountant",
       duration: "Mar 2018 - Sep 2024",
       responsibilities: [
-        "Developed tools using Next.js, MS Excel Macro, Google App Script for internal use.",
-        "Successfully automated various manual tasks including bill generation, printing, and tracking, resulting in increased efficiency and reduced operational time.",
-        "Awarded with Certificate of Appreciation from the current Chief of Bangladesh Air Force for successfully completing the pilot project of iBAS++ software system in the organization.",
+        "Automated various manual tasks, including bill generation, printing, and tracking systems. This reduced the time required from 2 days to 1 hour and the necessary manpower from 3 to 1.",
+        "Took responsibility and successfully credited the salary of over 2800 people of the organization.",
+        "Awarded with Certificate of Appreciation from the current Chief of Bangladesh Air Force for successfully completing the pilot-project of iBAS++ software system in the organization.",
       ],
     },
   ];
