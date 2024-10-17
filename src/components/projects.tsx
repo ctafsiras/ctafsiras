@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 export function Projects() {
   const projects = [
@@ -79,6 +80,15 @@ export function Projects() {
         {projects.map((project, index) => (
           <Card key={index} className="flex flex-col">
             <CardHeader>
+              <div className="mb-4">
+                <Image
+                  src={`https://themewagon.com/wp-content/uploads/2021/08/skydash-1200x736.png`}
+                  alt={`${project.title} screenshot`}
+                  width={600}
+                  height={400}
+                  className="rounded-lg object-cover w-full"
+                />
+              </div>
               <CardTitle>{project.title}</CardTitle>
               <CardDescription>{project.description}</CardDescription>
             </CardHeader>
