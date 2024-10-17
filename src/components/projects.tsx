@@ -80,14 +80,25 @@ export function Projects() {
         {projects.map((project, index) => (
           <Card key={index} className="flex flex-col">
             <CardHeader>
-              <div className="mb-4">
-                <Image
-                  src={`https://themewagon.com/wp-content/uploads/2021/08/skydash-1200x736.png`}
-                  alt={`${project.title} screenshot`}
-                  width={600}
-                  height={400}
-                  className="rounded-lg object-cover w-full"
-                />
+              <div className="mb-4 relative group perspective-1000">
+                <div className="transition-transform duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
+                  <Image
+                    src={`https://themewagon.com/wp-content/uploads/2021/08/skydash-1200x736.png`}
+                    alt={`${project.title} screenshot`}
+                    width={600}
+                    height={400}
+                    className="rounded-lg object-cover w-full backface-hidden"
+                  />
+                  <div className="absolute top-0 left-0 w-full h-full backface-hidden rotate-y-180">
+                    <Image
+                      src={`https://themewagon.com/wp-content/uploads/2022/11/phoenix-html-1500x920-1.jpg`}
+                      alt={`${project.title} alternate screenshot`}
+                      width={600}
+                      height={400}
+                      className="rounded-lg object-cover w-full h-full"
+                    />
+                  </div>
+                </div>
               </div>
               <CardTitle>{project.title}</CardTitle>
               <CardDescription>{project.description}</CardDescription>
