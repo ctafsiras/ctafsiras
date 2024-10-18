@@ -33,6 +33,26 @@ export function Projects() {
       live: "https://baby-care-store-three.vercel.app",
     },
     {
+      title: "Bake N Treat",
+      description: "A bakery ecommerce website for delicious treats.",
+      technologies: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Stripe",
+        "MongoDB",
+        "NextAuth.js",
+      ],
+      features: [
+        "Implemented a full-featured ecommerce platform with product listings, shopping cart, and secure checkout using Stripe.",
+        "Created a user authentication system with NextAuth.js for customer accounts and order history.",
+        "Designed a responsive and visually appealing interface showcasing bakery products.",
+      ],
+      github: "https://github.com/ctafsiras/bake-n-treat",
+      live: "https://bake-n-treat.vercel.app",
+    },
+    {
       title: "Legal Fist Exam",
       description: "A MCQ based exam taking web application for law students.",
       technologies: [
