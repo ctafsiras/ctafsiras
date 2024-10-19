@@ -3,50 +3,20 @@ import { motion, useInView } from "framer-motion";
 import { Card, CardContent } from "./ui/card";
 import { useRef } from "react";
 
-const initialStats = {
-  status: "success",
-  message: "retrieved",
-  totalSolved: 85,
-  totalQuestions: 3323,
-  easySolved: 64,
-  totalEasy: 830,
-  mediumSolved: 21,
-  totalMedium: 1738,
-  hardSolved: 0,
-  totalHard: 755,
-  acceptanceRate: 67.88,
-  ranking: 1181265,
-  contributionPoints: 167,
-  reputation: 9,
-  submissionCalendar: {
-    "1701129600": 2,
-    "1706140800": 4,
-    "1711843200": 22,
-    "1711929600": 2,
-    "1712188800": 10,
-    "1712275200": 15,
-    "1712361600": 7,
-    "1712448000": 4,
-    "1712534400": 10,
-    "1718064000": 4,
-    "1718150400": 8,
-    "1718236800": 3,
-    "1718323200": 5,
-    "1718409600": 5,
-    "1718496000": 11,
-    "1718582400": 7,
-    "1718668800": 21,
-    "1718755200": 8,
-    "1718841600": 5,
-    "1718928000": 19,
-    "1719014400": 1,
-    "1719100800": 3,
-    "1719187200": 1,
-    "1719792000": 2,
-    "1719878400": 1,
-    "1729296000": 8,
-  },
-};
+interface LeetCodeStats {
+  totalSolved: number;
+  totalQuestions: number;
+  easySolved: number;
+  totalEasy: number;
+  mediumSolved: number;
+  totalMedium: number;
+  hardSolved: number;
+  totalHard: number;
+  acceptanceRate: number;
+  contributionPoints: number;
+  reputation: number;
+  ranking: number;
+}
 
 const difficultyColors: Record<string, string> = {
   All: "bg-blue-500",
@@ -63,9 +33,9 @@ const borderColors: Record<string, string> = {
 };
 
 export default function LeetCode({
-  updatedStats = initialStats,
+  updatedStats,
 }: {
-  updatedStats?: typeof initialStats;
+  updatedStats: LeetCodeStats;
 }) {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
