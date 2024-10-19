@@ -24,17 +24,21 @@ export function Hero() {
         <TypewriterEffect words={words} />
       </div>
       <p className="mx-auto mt-4 max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-      A dedicated Full Stack Developer, passionate about continuous learning, exploring new technologies,
-and creating innovative solutions to solve real-world problems.
+        An IBM Certified Full Stack Developer, passionate about continuous
+        learning, exploring new technologies, and creating innovative solutions
+        to solve real-world problems.
       </p>
       <div className="mt-8 flex justify-center gap-4">
         <Button asChild>
-          <a target="_blank" href="https://drive.google.com/file/d/1kNpOqud5V7HCxpAnoq9qzocPyb3ygOaXYb3ZE9ID0AI/preview">View Resume</a>
+          <a
+            target="_blank"
+            href="https://drive.google.com/file/d/1kNpOqud5V7HCxpAnoq9qzocPyb3ygOaXYb3ZE9ID0AI/preview"
+          >
+            View Resume
+          </a>
         </Button>
         <Button variant="outline" asChild>
-          <a
-            href="https://docs.google.com/document/d/1kNpOqud5V7HCxpAnoq9qzocPyb3ygOaXYb3ZE9ID0AI/export?format=pdf"
-          >
+          <a href="https://docs.google.com/document/d/1kNpOqud5V7HCxpAnoq9qzocPyb3ygOaXYb3ZE9ID0AI/export?format=pdf">
             Download Resume
           </a>
         </Button>
