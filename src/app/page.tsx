@@ -5,14 +5,22 @@ import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
 import { Education } from "@/components/education";
 import { Contact } from "@/components/contact";
-
-export default function Home() {
+import LeetCode from "@/components/leetCode";
+export default async function Home() {
+  const data = await fetch(
+    "https://leetcode-stats-api.herokuapp.com/ctafsiras",
+    {
+      cache: "no-store",
+    }
+  );
+  const updatedStats = await data.json();
   return (
     <div className="container mx-auto px-4">
       <Hero />
       <About />
       <Experience />
       <Projects />
+      <LeetCode updatedStats={updatedStats} />
       <Skills />
       <Education />
       <Contact />
