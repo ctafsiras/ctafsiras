@@ -14,7 +14,7 @@ export function Experience() {
     },
     {
       company: "Bangladesh Air Force",
-      position: "Accountant",
+      position: "Accounts & Secretarial Assistant",
       duration: "Mar 2018 - Sep 2024",
       responsibilities: [
         "Automated various manual tasks, including bill generation, printing, and tracking systems. This reduced the time required from 2 days to 1 hour and the necessary manpower from 3 to 1.",
