@@ -10,12 +10,13 @@ export function About() {
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground text-justify">
-            Currently working at Legal Fist, I am passionate about continuous
-            learning, exploring new technologies, and creating innovative
-            solutions to solve real-world problems. With a background in
-            accounting and a strong foundation in computer science, I bring a
-            unique perspective to software development, combining analytical
-            skills with technical expertise.
+            Currently working at Standard Insight, a Hong Kong based Business
+            Research company, I am passionate about continuous learning,
+            exploring new technologies, and creating innovative solutions to
+            solve real-world problems. With a background in accounting and a
+            strong foundation in computer science, I bring a unique perspective
+            to software development, combining analytical skills with technical
+            expertise.
           </p>
         </CardContent>
       </Card>

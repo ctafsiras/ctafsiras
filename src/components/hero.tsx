@@ -4,9 +4,9 @@ import Typed from "typed.js";
 
 export function Hero() {
   const typedSentences = [
-    "Programmer",
-    "Full Stack Developer",
-    "Software Engineer",
+    "<span style='color: #3b82f6;'>Programmer</span>",
+    "Full Stack <span style='color: #3b82f6;'>Developer</span>",
+    "Software <span style='color: #3b82f6;'>Engineer</span>",
   ];
   return (
     <section className="py-24 px-6 text-center">

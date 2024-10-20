@@ -13,7 +13,10 @@ export default function TypewriterEffect({
     const typed = new Typed(el.current, {
       strings: sentences,
       typeSpeed: 50,
+      backSpeed: 30,
       smartBackspace: true,
+      loop: true,
+      loopCount: Infinity,
     });
 
     return () => {
@@ -21,9 +24,5 @@ export default function TypewriterEffect({
     };
   }, []);
 
-  return (
-    <div className="App">
-      <span ref={el} />
-    </div>
-  );
+  return <span ref={el} />;
 }
