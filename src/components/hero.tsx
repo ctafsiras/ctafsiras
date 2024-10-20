@@ -1,27 +1,20 @@
 import { Button } from "@/components/ui/button";
-import { TypewriterEffect } from "@/components/typewriter-effect";
+import TypewriterEffect from "@/components/typewriter-effect";
+import Typed from "typed.js";
 
 export function Hero() {
-  const words = [
-    {
-      text: "Full",
-    },
-    {
-      text: "Stack",
-    },
-    {
-      text: "Developer",
-      className: "text-[#F59E0B]",
-    },
+  const typedSentences = [
+    "Programmer",
+    "Full Stack Developer",
+    "Software Engineer",
   ];
-
   return (
     <section className="py-24 px-6 text-center">
       <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
         Chowdhury Tafsir Ahmed Siddiki
       </h1>
       <div className="mt-4 h-[40px] lg:h-[56px] text-xl md:text-4xl">
-        <TypewriterEffect words={words} />
+        <TypewriterEffect sentences={typedSentences} />
       </div>
       <p className="mx-auto mt-4 max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
         An IBM Certified Full Stack Developer, passionate about continuous
