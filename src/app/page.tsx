@@ -14,10 +14,11 @@ export default async function Home() {
     }
   );
   const updatedStats = await data.json();
-  updatedStats.acceptanceRate = parseFloat(
+  updatedStats.acceptanceRate = Number(
     (
-      updatedStats.matchedUserStats.acSubmissionNum[0].count /
-      updatedStats.matchedUserStats.acSubmissionNum[0].submissions
+      (updatedStats.matchedUserStats.acSubmissionNum[0].count /
+        updatedStats.matchedUserStats.acSubmissionNum[0].submissions) *
+      100
     ).toFixed(2)
   );
 
