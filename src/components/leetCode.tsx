@@ -103,7 +103,7 @@ export default function LeetCode({
             {[
               {
                 title: "Acceptance Rate",
-                value: `${updatedStats.acceptanceRate.toFixed(2)}%`,
+                value: `${updatedStats.acceptanceRate}%`,
                 color: borderColors.All,
               },
               {
