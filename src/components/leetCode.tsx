@@ -13,7 +13,7 @@ interface LeetCodeStats {
   hardSolved: number;
   totalHard: number;
   acceptanceRate: number;
-  contributionPoints: number;
+  contributionPoint: number;
   reputation: number;
   ranking: number;
 }
@@ -108,7 +108,7 @@ export default function LeetCode({
               },
               {
                 title: "Contribution Points",
-                value: updatedStats.contributionPoints,
+                value: updatedStats.contributionPoint,
                 color: borderColors.Easy,
               },
               {
