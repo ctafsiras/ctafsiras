@@ -14,6 +14,13 @@ export default async function Home() {
     }
   );
   const updatedStats = await data.json();
+  updatedStats.acceptanceRate = parseFloat(
+    (
+      updatedStats.matchedUserStats.acSubmissionNum[0].count /
+      updatedStats.matchedUserStats.acSubmissionNum[0].submissions
+    ).toFixed(2)
+  );
+
   return (
     <div className="container mx-auto px-4">
       <Hero />
