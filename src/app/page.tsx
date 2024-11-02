@@ -13,21 +13,7 @@ export default async function Home() {
       cache: "no-store",
     }
   );
-  const res = await data.json();
-  const updatedStats = {
-    totalSolved: res.totalSolved,
-    totalQuestions: res.totalQuestions,
-    easySolved: res.easySolved,
-    totalEasy: res.totalEasy,
-    mediumSolved: res.mediumSolved,
-    totalMedium: res.totalMedium,
-    hardSolved: res.hardSolved,
-    totalHard: res.totalHard,
-    acceptanceRate: parseFloat(res.acceptanceRate.toFixed(4)),
-    contributionPoints: res.contributionPoint,
-    reputation: res.reputation,
-    ranking: res.ranking,
-  };
+  const updatedStats = await data.json();
   return (
     <div className="container mx-auto px-4">
       <Hero />
