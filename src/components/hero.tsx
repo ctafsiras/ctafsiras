@@ -4,8 +4,8 @@ import Typed from "typed.js";
 
 export function Hero() {
   const typedSentences = [
-    "<span style='color: #3b82f6;'>Programmer</span>",
-    "Full Stack <span style='color: #3b82f6;'>Developer</span>",
+    "Tech <span style='color: #3b82f6;'>Builder</span>",
+    "Problem <span style='color: #3b82f6;'>Solver</span>",
     "Software <span style='color: #3b82f6;'>Engineer</span>",
   ];
   return (
