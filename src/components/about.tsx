@@ -10,13 +10,7 @@ export function About() {
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground text-justify">
-            Currently working at Standard Insight, a Hong Kong based Business
-            Research company, I am passionate about continuous learning,
-            exploring new technologies, and creating innovative solutions to
-            solve real-world problems. With a background in accounting and a
-            strong foundation in computer science, I bring a unique perspective
-            to software development, combining analytical skills with technical
-            expertise.
+            A software engineer currently working as a Full Stack Developer at Standard Insights. I studied Computer Science at University of the People and hold IBM certification as a Full Stack Software Developer, along with Meta certifications in Front-End and Back-End Development. I'm passionate about continuous learning, exploring new technologies, and creating innovative solutions to solve real-life problems.
           </p>
         </CardContent>
       </Card>
