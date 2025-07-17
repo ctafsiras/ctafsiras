@@ -13,6 +13,27 @@ import Image from "next/image";
 export function Projects() {
   const projects = [
     {
+      title: "Career Dock",
+      description: "Job Application Tracking Web App.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "Express.js",
+        "MongoDB",
+        "Clerk",
+        "Lemon Squeezy",
+        "Gemini AI",
+        "Vercel",
+      ],
+      features: [
+        "Built an end-to-end Next.js + TypeScript web app with Express.js and MongoDB, supporting job tracking, task management, and premium features with Clerk + Lemon Squeezy.",
+        "Integrated real-time interactive charts and dashboards, using AI (Gemini) to suggest optimized resumes, LinkedIn profiles, and cover letters.",
+        "Architected secure auth flows and subscription logic, following RESTful standards and deploying to Vercel with seamless CI/CD pipeline integration."
+      ],
+      github: "",
+      live: "",
+    },
+    {
       title: "Baby Care Store",
       description: "An eccommerce web application for baby care accessories.",
       technologies: [

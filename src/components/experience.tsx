@@ -3,23 +3,36 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export function Experience() {
   const experiences = [
     {
-      company: "Legal Fist",
+      company: "Standard Insights",
       position: "Full Stack Developer",
-      duration: "Jun 2022 - Sep 2023 (Contractual)",
+      duration: "Oct 24 - Present | Remote | Hong Kong, SAR",
       responsibilities: [
-        "Designed and developed over 20 static and dynamic pages using Next.js, React, and Tailwind.",
-        "Deployed applications using frameworks like Laravel, WordPress, and Next.js on DigitalOcean. Learned the process on the go within 7 days.",
-        "Resolved bugs related to the UI, functionalities, server, and associated tools within the day.",
+        "Engineered and shipped production-grade features using Next.js, TypeScript, Node.js, and ShadCN UI, delivering scalable consumer intelligence dashboards with clean, responsive UI/UX.",
+        "Built and optimized RESTful APIs using Express.js, MongoDB, and Mongoose, while leveraging Redis for efficient caching and state handling across sessions and data layers.",
+        "Designed and implemented BullMQ-based worker queues backed by Redis, enabling background task processing with robust error handling and retry logic.",
+        "Integrated Claude AI and OpenAI APIs into the platform to power intelligent summarization, dynamic content generation, and personalized recommendations.",
+        "Deployed containerized services via Docker and managed production environments using AWS ECS, handling CI/CD pipelines and service orchestration.",
+        "Leveraged the Vercel SDK for frontend deployment, enabling seamless integration of serverless functions and performance monitoring in production."
       ],
     },
     {
-      company: "Bangladesh Air Force",
-      position: "Accounts & Secretarial Assistant",
-      duration: "Mar 2018 - Sep 2024",
+      company: "HJ Animation Shop LTD",
+      position: "MERN Stack Developer",
+      duration: "Jul 23 - Sep 24 | Remote | Loughton, United Kingdom",
       responsibilities: [
-        "Automated various manual tasks, including bill generation, printing, and tracking systems. This reduced the time required from 2 days to 1 hour and the necessary manpower from 3 to 1.",
-        "Took responsibility and successfully credited the salary of over 2800 people of the organization.",
-        "Awarded with Certificate of Appreciation from the current Chief of Bangladesh Air Force for successfully completing the pilot-project of iBAS++ software system in the organization.",
+        "Built and deployed full-stack features with TypeScript, React.js, Node.js, and MongoDB, focusing on UI components via Tailwind CSS and reusable modules.",
+        "Integrated third-party services (payment, auth, analytics) and designed secure RESTful APIs using JWT/OAuth2, improving platform security and extensibility.",
+        "Automated deployments, built reusable components, and implemented smart workflows, boosting development velocity and aligning with CI/CD practices."
+      ],
+    },
+    {
+      company: "Legal Fist",
+      position: "Full Stack Developer",
+      duration: "Jun 22 - Jun 23 | Remote | Dhaka, Bangladesh",
+      responsibilities: [
+        "Designed and deployed dynamic apps using Next.js, React, Tailwind CSS, and PostgreSQL via Prisma ORM, achieving clean and responsive UI.",
+        "Built and maintained backend features using Node.js, Express.js, and MongoDB, integrating with PostgreSQL via Prisma for optimal queries.",
+        "Contributed to cross-team code reviews, sprint planning, and deployment pipelines using Git and Linux servers on DigitalOcean."
       ],
     },
   ];
