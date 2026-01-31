@@ -16,6 +16,7 @@ interface LeetCodeStats {
   contributionPoint: number;
   reputation: number;
   ranking: number;
+  codeforceProblem: number;
 }
 
 const difficultyColors: Record<string, string> = {
@@ -43,23 +44,27 @@ export default function LeetCode({
   const stats = [
     {
       difficulty: "All",
+      title: "Total Solved",
       count: updatedStats.totalSolved,
-      total: updatedStats.totalQuestions,
+      total: updatedStats.totalQuestions + "+",
     },
     {
       difficulty: "Easy",
+      title: "LeetCode (Easy)",
       count: updatedStats.easySolved,
       total: updatedStats.totalEasy,
     },
     {
       difficulty: "Medium",
+      title: "LeetCode (Medium)",
       count: updatedStats.mediumSolved,
       total: updatedStats.totalMedium,
     },
     {
       difficulty: "Hard",
-      count: updatedStats.hardSolved,
-      total: updatedStats.totalHard,
+      title: "Codeforce Problems",
+      count: updatedStats.codeforceProblem,
+      total: "N/A",
     },
   ];
 
@@ -80,7 +85,7 @@ export default function LeetCode({
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <h3 className="text-xl font-semibold text-white mb-2">
-                  {stat.difficulty}
+                  {stat.title}
                 </h3>
                 <motion.div
                   className="text-4xl font-bold text-white"

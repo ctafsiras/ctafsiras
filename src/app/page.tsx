@@ -11,16 +11,25 @@ export default async function Home() {
     "https://leetcode-api-faisalshohag.vercel.app/ctafsiras",
     {
       cache: "no-store",
-    }
+    },
   );
+  const codeforceData = await fetch(
+    "https://n8n.zenix-lab.com/webhook/codeforce-stat",
+    {
+      cache: "no-store",
+    },
+  );
+  const codeforceProblem = Number((await codeforceData.text()).split(" ")[0]);
   const updatedStats = await data.json();
   updatedStats.acceptanceRate = Number(
     (
       (updatedStats.matchedUserStats.acSubmissionNum[0].count /
         updatedStats.matchedUserStats.acSubmissionNum[0].submissions) *
       100
-    ).toFixed(2)
+    ).toFixed(2),
   );
+  updatedStats.codeforceProblem = codeforceProblem;
+  updatedStats.totalSolved += codeforceProblem;
 
   return (
     <div className="container mx-auto px-4">
