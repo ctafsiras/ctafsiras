@@ -90,7 +90,9 @@ export function ChatPanel({
         }
       } catch (err) {
         if (active) {
-          setError(err instanceof Error ? err.message : "Failed to load messages");
+          setError(
+            err instanceof Error ? err.message : "Failed to load messages",
+          );
         }
       } finally {
         if (active) {
@@ -195,9 +197,9 @@ export function ChatPanel({
         onScroll={handleScroll}
         className="flex-1 space-y-3 overflow-y-auto px-4 py-4"
       >
-        {loading ? (
+        {/* {loading ? (
           <div className="text-sm text-muted-foreground">Loading messages...</div>
-        ) : null}
+        ) : null} */}
         {!loading && messages.length === 0 ? (
           <div className="text-sm text-muted-foreground">
             No messages yet. Start the conversation.
