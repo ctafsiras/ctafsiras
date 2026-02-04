@@ -18,6 +18,7 @@ export function Navbar() {
           <Link href="#skills">Skills</Link>
           <Link href="#education">Education</Link>
           <Link href="#contact">Contact</Link>
+          <Link href="/message">Message</Link>
         </nav>
         <div className="ml-auto">
           <ModeToggle />
