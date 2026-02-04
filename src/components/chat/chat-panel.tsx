@@ -57,6 +57,7 @@ export function ChatPanel({
 
   useEffect(() => {
     let active = true;
+    let intervalId: ReturnType<typeof setInterval> | null = null;
     const loadMessages = async () => {
       setLoading(true);
       setError(null);
@@ -70,7 +71,21 @@ export function ChatPanel({
           throw new Error(data?.error || "Failed to load messages");
         }
         if (active) {
-          setMessages(data.messages ?? []);
+          setMessages((prev) => {
+            const pending = prev.filter((msg) => msg.pending);
+            const next = (data.messages ?? []) as Message[];
+            const nextIds = new Set(next.map((msg) => msg.id));
+            const merged = [
+              ...next,
+              ...pending.filter((msg) => !nextIds.has(msg.id)),
+            ];
+            merged.sort(
+              (a, b) =>
+                new Date(a.createdAt).getTime() -
+                new Date(b.createdAt).getTime(),
+            );
+            return merged;
+          });
           requestAnimationFrame(scrollToBottom);
         }
       } catch (err) {
@@ -85,39 +100,12 @@ export function ChatPanel({
     };
 
     loadMessages();
+    intervalId = setInterval(loadMessages, 3000);
     return () => {
       active = false;
-    };
-  }, [conversationId]);
-
-  useEffect(() => {
-    const source = new EventSource(
-      `/api/messages/stream?conversationId=${conversationId}`,
-    );
-
-    const onMessage = (event: MessageEvent) => {
-      if (!event.data) return;
-      try {
-        const next = JSON.parse(event.data) as Message;
-        setMessages((prev) => {
-          if (prev.some((msg) => msg.id === next.id)) {
-            return prev;
-          }
-          return [...prev, next];
-        });
-      } catch {
-        // ignore malformed events
+      if (intervalId) {
+        clearInterval(intervalId);
       }
-    };
-
-    source.addEventListener("message", onMessage);
-    source.addEventListener("error", () => {
-      // EventSource will auto-reconnect
-    });
-
-    return () => {
-      source.removeEventListener("message", onMessage);
-      source.close();
     };
   }, [conversationId]);
 
@@ -168,9 +156,17 @@ export function ChatPanel({
       if (!res.ok) {
         throw new Error(data?.error || "Failed to send");
       }
-      setMessages((prev) =>
-        prev.map((msg) => (msg.id === tempId ? data.message : msg)),
-      );
+      setMessages((prev) => {
+        const replaced = prev.map((msg) =>
+          msg.id === tempId ? data.message : msg,
+        );
+        const seen = new Set<string>();
+        return replaced.filter((msg) => {
+          if (seen.has(msg.id)) return false;
+          seen.add(msg.id);
+          return true;
+        });
+      });
     } catch (err) {
       setMessages((prev) => prev.filter((msg) => msg.id !== tempId));
       setError(err instanceof Error ? err.message : "Failed to send");
