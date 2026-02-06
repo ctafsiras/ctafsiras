@@ -12,6 +12,7 @@ export async function GET() {
     const result = await query<{
       id: string;
       visitorId: string;
+      displayName: string | null;
       createdAt: string;
       lastMessageAt: string;
       lastMessage: string | null;
@@ -21,6 +22,7 @@ export async function GET() {
       select
         c.id,
         c.visitor_id as "visitorId",
+        c.display_name as "displayName",
         c.created_at as "createdAt",
         c.last_message_at as "lastMessageAt",
         m.body as "lastMessage",
@@ -78,6 +80,53 @@ export async function POST(request: Request) {
     );
 
     return NextResponse.json({ conversationId: id });
+  } catch (err) {
+    return NextResponse.json(
+      { error: err instanceof Error ? err.message : "Server error" },
+      { status: 500 },
+    );
+  }
+}
+
+export async function PATCH(request: Request) {
+  try {
+    await initDb();
+
+    const body = await request.json().catch(() => null);
+    const conversationId =
+      typeof body?.conversationId === "string"
+        ? body.conversationId.trim()
+        : "";
+    const displayName =
+      typeof body?.displayName === "string" ? body.displayName.trim() : "";
+
+    if (!conversationId) {
+      return NextResponse.json(
+        { error: "conversationId is required" },
+        { status: 400 },
+      );
+    }
+
+    if (displayName.length > 100) {
+      return NextResponse.json(
+        { error: "displayName must be 100 characters or less" },
+        { status: 400 },
+      );
+    }
+
+    const result = await query(
+      "update conversations set display_name = $1 where id = $2",
+      [displayName || null, conversationId],
+    );
+
+    if (!result.rowCount) {
+      return NextResponse.json(
+        { error: "Conversation not found" },
+        { status: 404 },
+      );
+    }
+
+    return NextResponse.json({ success: true });
   } catch (err) {
     return NextResponse.json(
       { error: err instanceof Error ? err.message : "Server error" },

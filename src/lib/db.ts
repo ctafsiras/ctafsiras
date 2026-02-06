@@ -23,32 +23,42 @@ export async function initDb() {
   }
 
   initPromise = (async () => {
-    const db = getPool();
-    await db.query(`
-      create table if not exists conversations (
-        id uuid primary key,
-        visitor_id text unique not null,
-        created_at timestamptz default now(),
-        last_message_at timestamptz default now()
-      );
-    `);
-    await db.query(`
-      create table if not exists messages (
-        id uuid primary key,
-        conversation_id uuid not null references conversations(id) on delete cascade,
-        sender text not null,
-        body text not null,
-        created_at timestamptz default now()
-      );
-    `);
-    await db.query(`
-      create index if not exists messages_conversation_created_at_idx
-        on messages (conversation_id, created_at);
-    `);
-    await db.query(`
-      create index if not exists conversations_last_message_idx
-        on conversations (last_message_at desc);
-    `);
+    try {
+      const db = getPool();
+      await db.query(`
+        create table if not exists conversations (
+          id uuid primary key,
+          visitor_id text unique not null,
+          display_name text,
+          created_at timestamptz default now(),
+          last_message_at timestamptz default now()
+        );
+      `);
+      await db.query(`
+        alter table conversations add column if not exists display_name text;
+      `);
+      await db.query(`
+        create table if not exists messages (
+          id uuid primary key,
+          conversation_id uuid not null references conversations(id) on delete cascade,
+          sender text not null,
+          body text not null,
+          created_at timestamptz default now()
+        );
+      `);
+      await db.query(`
+        create index if not exists messages_conversation_created_at_idx
+          on messages (conversation_id, created_at);
+      `);
+      await db.query(`
+        create index if not exists conversations_last_message_idx
+          on conversations (last_message_at desc);
+      `);
+    } catch (err) {
+      // Reset so initDb retries on next call instead of caching a failed promise
+      initPromise = null;
+      throw err;
+    }
   })();
 
   return initPromise;

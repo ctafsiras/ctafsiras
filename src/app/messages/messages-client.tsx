@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChatPanel } from "@/components/chat/chat-panel";
 import { cn } from "@/lib/utils";
 
 type Conversation = {
   id: string;
   visitorId: string;
+  displayName: string | null;
   createdAt: string;
   lastMessageAt: string;
   lastMessage: string | null;
@@ -18,6 +19,9 @@ export default function MessagesClient() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editValue, setEditValue] = useState("");
+  const editInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -64,6 +68,52 @@ export default function MessagesClient() {
     [conversations, activeId],
   );
 
+  function getDisplayLabel(conv: Conversation) {
+    return conv.displayName || `Visitor ${conv.visitorId.slice(0, 8)}`;
+  }
+
+  function startEditing(conv: Conversation, e: React.MouseEvent) {
+    e.stopPropagation();
+    setEditingId(conv.id);
+    setEditValue(conv.displayName || "");
+    setTimeout(() => editInputRef.current?.focus(), 0);
+  }
+
+  function cancelEditing() {
+    setEditingId(null);
+    setEditValue("");
+  }
+
+  async function saveDisplayName(conversationId: string) {
+    const trimmed = editValue.trim();
+    setEditingId(null);
+
+    // Optimistically update local state
+    setConversations((prev) =>
+      prev.map((c) =>
+        c.id === conversationId
+          ? { ...c, displayName: trimmed || null }
+          : c,
+      ),
+    );
+
+    try {
+      const res = await fetch("/api/conversations", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          conversationId,
+          displayName: trimmed,
+        }),
+      });
+      if (!res.ok) {
+        console.error("Failed to save display name");
+      }
+    } catch {
+      console.error("Failed to save display name");
+    }
+  }
+
   return (
     <div className="container mx-auto px-4 py-10">
       <div className="mb-6">
@@ -93,6 +143,7 @@ export default function MessagesClient() {
             ) : null}
             {conversations.map((conversation) => {
               const isActive = conversation.id === activeId;
+              const isEditing = editingId === conversation.id;
               const preview =
                 conversation.lastMessage?.slice(0, 60) ?? "No messages yet";
               return (
@@ -100,17 +151,64 @@ export default function MessagesClient() {
                   key={conversation.id}
                   onClick={() => setActiveId(conversation.id)}
                   className={cn(
-                    "w-full border-b px-4 py-3 text-left transition",
+                    "group w-full border-b px-4 py-3 text-left transition",
                     isActive
                       ? "bg-muted"
                       : "hover:bg-muted/60 focus-visible:bg-muted/60",
                   )}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <div className="text-sm font-medium">
-                      Visitor {conversation.visitorId.slice(0, 8)}
+                    <div className="flex min-w-0 flex-1 items-center gap-1.5">
+                      {isEditing ? (
+                        <input
+                          ref={editInputRef}
+                          type="text"
+                          value={editValue}
+                          onChange={(e) => setEditValue(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              saveDisplayName(conversation.id);
+                            } else if (e.key === "Escape") {
+                              cancelEditing();
+                            }
+                          }}
+                          onBlur={() => saveDisplayName(conversation.id)}
+                          onClick={(e) => e.stopPropagation()}
+                          maxLength={100}
+                          placeholder={`Visitor ${conversation.visitorId.slice(0, 8)}`}
+                          className="h-6 w-full min-w-0 rounded border bg-background px-1.5 text-sm font-medium outline-none focus:ring-1 focus:ring-ring"
+                        />
+                      ) : (
+                        <>
+                          <span className="truncate text-sm font-medium">
+                            {getDisplayLabel(conversation)}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={(e) => startEditing(conversation, e)}
+                            className="shrink-0 rounded p-0.5 text-muted-foreground opacity-0 transition-opacity hover:text-foreground group-hover:opacity-100"
+                            title="Edit name"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="14"
+                              height="14"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                              <path d="m15 5 4 4" />
+                            </svg>
+                          </button>
+                        </>
+                      )}
                     </div>
-                    <div className="text-[11px] text-muted-foreground">
+                    <div className="shrink-0 text-[11px] text-muted-foreground">
                       {formatTime(conversation.lastMessageAt)}
                     </div>
                   </div>
@@ -128,7 +226,7 @@ export default function MessagesClient() {
             <ChatPanel
               conversationId={activeConversation.id}
               currentSender="owner"
-              title={`Visitor ${activeConversation.visitorId.slice(0, 8)}`}
+              title={getDisplayLabel(activeConversation)}
               subtitle="Private admin view"
             />
           </div>
