@@ -38,7 +38,7 @@ export default function MessageClient() {
 
   if (status === "loading") {
     return (
-      <div className="container mx-auto px-4 py-10">
+      <div className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center md:container md:mx-auto md:min-h-0 md:px-4 md:py-10">
         <div className="text-sm text-muted-foreground">Opening chat...</div>
       </div>
     );
@@ -46,7 +46,7 @@ export default function MessageClient() {
 
   if (status === "error" || !conversationId) {
     return (
-      <div className="container mx-auto px-4 py-10">
+      <div className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center md:container md:mx-auto md:min-h-0 md:px-4 md:py-10">
         <div className="text-sm text-destructive">
           {error ?? "Unable to open chat."}
         </div>
@@ -55,8 +55,8 @@ export default function MessageClient() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-10">
-      <div className="mx-auto max-w-3xl">
+    <div className="flex min-h-[calc(100vh-3.5rem)] flex-col md:container md:mx-auto md:min-h-0 md:px-4 md:py-10 md:max-w-4xl">
+      <div className="flex flex-1 flex-col md:mx-auto md:h-[70vh] md:flex-none md:w-full">
         <ChatPanel
           conversationId={conversationId}
           currentSender="visitor"

@@ -185,7 +185,7 @@ export function ChatPanel({
   };
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-xl border bg-card">
+    <div className="flex h-[calc(100vh-3.5rem)] flex-col overflow-hidden border-b bg-card md:h-full md:rounded-xl md:border">
       <div className="border-b px-4 py-3">
         <div className="text-sm font-semibold">{title}</div>
         {subtitle ? (
@@ -248,25 +248,27 @@ export function ChatPanel({
           </Button>
         </div>
       ) : null}
-      <div className="border-t p-4">
-        <div className="flex flex-col gap-2">
+      <div className="border-t p-3">
+        {error ? (
+          <div className="mb-2 text-xs text-destructive">{error}</div>
+        ) : null}
+        <div className="flex items-end gap-2">
           <Textarea
             value={input}
             onChange={(event) => setInput(event.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type a message..."
-            rows={2}
+            rows={1}
             maxLength={MAX_MESSAGE_LENGTH}
-            className="resize-none"
+            className="flex-1 resize-none"
           />
-          <div className="flex items-center justify-between gap-2">
-            <div className="text-xs text-muted-foreground">
-              {error ? error : `${input.length}/${MAX_MESSAGE_LENGTH}`}
-            </div>
-            <Button onClick={sendMessage} disabled={sending || !input.trim()}>
-              Send
-            </Button>
-          </div>
+          <Button
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={sendMessage}
+            disabled={sending || !input.trim()}
+          >
+            Send
+          </Button>
         </div>
       </div>
     </div>
