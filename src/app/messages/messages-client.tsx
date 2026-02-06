@@ -22,6 +22,7 @@ export default function MessagesClient() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState("");
   const editInputRef = useRef<HTMLInputElement>(null);
+  const skipBlurRef = useRef(false);
 
   useEffect(() => {
     let mounted = true;
@@ -74,17 +75,20 @@ export default function MessagesClient() {
 
   function startEditing(conv: Conversation, e: React.MouseEvent) {
     e.stopPropagation();
+    skipBlurRef.current = false;
     setEditingId(conv.id);
     setEditValue(conv.displayName || "");
     setTimeout(() => editInputRef.current?.focus(), 0);
   }
 
   function cancelEditing() {
+    skipBlurRef.current = true;
     setEditingId(null);
     setEditValue("");
   }
 
   async function saveDisplayName(conversationId: string) {
+    skipBlurRef.current = true;
     const trimmed = editValue.trim();
     setEditingId(null);
 
@@ -173,7 +177,11 @@ export default function MessagesClient() {
                               cancelEditing();
                             }
                           }}
-                          onBlur={() => saveDisplayName(conversation.id)}
+                          onBlur={() => {
+                            if (!skipBlurRef.current) {
+                              saveDisplayName(conversation.id);
+                            }
+                          }}
                           onClick={(e) => e.stopPropagation()}
                           maxLength={100}
                           placeholder={`Visitor ${conversation.visitorId.slice(0, 8)}`}
