@@ -5,6 +5,7 @@ import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
 import { Education } from "@/components/education";
 import { Contact } from "@/components/contact";
+import { Blog } from "@/components/blog";
 import LeetCode from "@/components/leetCode";
 export default async function Home() {
   const data = await fetch(
@@ -39,6 +40,7 @@ export default async function Home() {
       <Projects />
       <LeetCode updatedStats={updatedStats} />
       <Skills />
+      <Blog />
       <Education />
       <Contact />
     </div>

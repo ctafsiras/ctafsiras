@@ -12,9 +12,12 @@ export function Education() {
           <p className="font-semibold">
             Bachelor of Science in Computer Science
           </p>
-          <p className="text-muted-foreground">Graduated with CGPA 3.67</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            2021 - 2024 | Completed
+          </p>
+          <p className="text-muted-foreground mt-2">Graduated with CGPA 3.67</p>
           <p className="text-muted-foreground">
-            Enlisted for Dean's Award List
+            Enlisted for Dean&apos;s Award List
           </p>
         </CardContent>
       </Card>

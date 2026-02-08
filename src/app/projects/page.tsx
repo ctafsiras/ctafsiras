@@ -8,38 +8,36 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
-import Link from "next/link";
 import { projects } from "@/data/projects";
+import Link from "next/link";
+import type { Metadata } from "next";
 
-export function Projects() {
+export const metadata: Metadata = {
+  title: "All Projects | Chowdhury Tafsir Ahmed Siddiki",
+  description:
+    "Browse all projects built by Chowdhury Tafsir Ahmed Siddiki - Full Stack Developer.",
+};
+
+export default function AllProjectsPage() {
   return (
-    <section id="projects" className="py-16">
-      <h2 className="text-3xl font-bold text-center mb-8">Projects</h2>
+    <div className="container mx-auto px-4 py-16">
+      <div className="mb-8">
+        <Link
+          href="/"
+          className="text-sm text-muted-foreground hover:text-primary transition-colors"
+        >
+          &larr; Back to Home
+        </Link>
+      </div>
+      <h1 className="text-4xl font-bold text-center mb-4">All Projects</h1>
+      <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        A collection of projects I have built, ranging from full-stack ecommerce
+        platforms to AI-powered applications and developer tools.
+      </p>
       <div className="grid gap-6 md:grid-cols-2">
         {projects.map((project) => (
           <Card key={project.slug} className="flex flex-col">
             <CardHeader>
-              <div className="mb-4 relative group perspective-1000">
-                <div className="transition-transform duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
-                  <Image
-                    src={`https://themewagon.com/wp-content/uploads/2021/08/skydash-1200x736.png`}
-                    alt={`${project.title} screenshot`}
-                    width={600}
-                    height={400}
-                    className="rounded-lg object-cover w-full backface-hidden"
-                  />
-                  <div className="absolute top-0 left-0 w-full h-full backface-hidden rotate-y-180">
-                    <Image
-                      src={`https://themewagon.com/wp-content/uploads/2022/11/phoenix-html-1500x920-1.jpg`}
-                      alt={`${project.title} alternate screenshot`}
-                      width={600}
-                      height={400}
-                      className="rounded-lg object-cover w-full h-full"
-                    />
-                  </div>
-                </div>
-              </div>
               <CardTitle>{project.title}</CardTitle>
               <CardDescription>{project.description}</CardDescription>
             </CardHeader>
@@ -53,7 +51,7 @@ export function Projects() {
               </div>
               <ul className="list-disc pl-5 space-y-2">
                 {project.features.map((feature, idx) => (
-                  <li key={idx} className="text-justify">
+                  <li key={idx} className="text-justify text-sm text-muted-foreground">
                     {feature}
                   </li>
                 ))}
@@ -69,7 +67,7 @@ export function Projects() {
                   GitHub
                 </a>
               </Button>
-              <Button asChild variant="outline" size="sm">
+              <Button asChild size="sm" variant="outline">
                 <Link href={`/projects/${project.slug}`}>
                   Project Details
                 </Link>
@@ -87,11 +85,6 @@ export function Projects() {
           </Card>
         ))}
       </div>
-      <div className="text-center mt-8">
-        <Button asChild variant="outline" size="lg">
-          <Link href="/projects">View All Projects</Link>
-        </Button>
-      </div>
-    </section>
+    </div>
   );
 }
