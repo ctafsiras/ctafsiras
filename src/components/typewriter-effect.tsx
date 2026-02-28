@@ -22,7 +22,7 @@ export default function TypewriterEffect({
     return () => {
       typed.destroy();
     };
-  }, []);
+  }, [sentences]);
 
   return <span ref={el} />;
 }

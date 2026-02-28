@@ -58,29 +58,31 @@ export default function AllProjectsPage() {
               </ul>
             </CardContent>
             <CardFooter className="flex justify-between gap-2">
-              <Button disabled={!project.github} asChild variant="outline" size="sm">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+              {project.github ? (
+                <Button asChild variant="outline" size="sm">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer">
+                    GitHub
+                  </a>
+                </Button>
+              ) : (
+                <Button disabled variant="outline" size="sm">
                   GitHub
-                </a>
-              </Button>
+                </Button>
+              )}
               <Button asChild size="sm" variant="outline">
-                <Link href={`/projects/${project.slug}`}>
-                  Project Details
-                </Link>
+                <Link href={`/projects/${project.slug}`}>Project Details</Link>
               </Button>
-              <Button disabled={!project.live} asChild size="sm">
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+              {project.live ? (
+                <Button asChild size="sm">
+                  <a href={project.live} target="_blank" rel="noopener noreferrer">
+                    Live Demo
+                  </a>
+                </Button>
+              ) : (
+                <Button disabled size="sm">
                   Live Demo
-                </a>
-              </Button>
+                </Button>
+              )}
             </CardFooter>
           </Card>
         ))}

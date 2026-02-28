@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import TypewriterEffect from "@/components/typewriter-effect";
-import Typed from "typed.js";
 
 export function Hero() {
   const typedSentences = [

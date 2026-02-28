@@ -52,7 +52,6 @@ export function Skills() {
         "GitHub",
         "GitHub Actions",
         "Docker",
-        "Redis",
         "AWS (EC2, ECS)",
         "DigitalOcean",
       ],
@@ -94,11 +93,4 @@ export function Skills() {
       </Card>
     </section>
   );
-}
-{
-  /* {category.skills.map((skill, idx) => (
-                    <Badge key={idx} variant="outline">
-                      {skill}
-                    </Badge>
-                  ))} */
 }

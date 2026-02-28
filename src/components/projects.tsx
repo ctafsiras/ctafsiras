@@ -8,37 +8,31 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/data/projects";
+
+const gradients = [
+  "from-blue-500 to-indigo-600",
+  "from-emerald-500 to-teal-600",
+  "from-orange-500 to-rose-600",
+  "from-violet-500 to-purple-600",
+  "from-cyan-500 to-sky-600",
+];
 
 export function Projects() {
   return (
     <section id="projects" className="py-16">
       <h2 className="text-3xl font-bold text-center mb-8">Projects</h2>
       <div className="grid gap-6 md:grid-cols-2">
-        {projects.map((project) => (
+        {projects.map((project, i) => (
           <Card key={project.slug} className="flex flex-col">
             <CardHeader>
-              <div className="mb-4 relative group perspective-1000">
-                <div className="transition-transform duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
-                  <Image
-                    src={`https://themewagon.com/wp-content/uploads/2021/08/skydash-1200x736.png`}
-                    alt={`${project.title} screenshot`}
-                    width={600}
-                    height={400}
-                    className="rounded-lg object-cover w-full backface-hidden"
-                  />
-                  <div className="absolute top-0 left-0 w-full h-full backface-hidden rotate-y-180">
-                    <Image
-                      src={`https://themewagon.com/wp-content/uploads/2022/11/phoenix-html-1500x920-1.jpg`}
-                      alt={`${project.title} alternate screenshot`}
-                      width={600}
-                      height={400}
-                      className="rounded-lg object-cover w-full h-full"
-                    />
-                  </div>
-                </div>
+              <div
+                className={`mb-4 h-48 rounded-lg bg-gradient-to-br ${gradients[i % gradients.length]} flex items-center justify-center`}
+              >
+                <span className="text-white text-2xl font-bold tracking-wide opacity-90 text-center px-4">
+                  {project.title}
+                </span>
               </div>
               <CardTitle>{project.title}</CardTitle>
               <CardDescription>{project.description}</CardDescription>
@@ -60,29 +54,31 @@ export function Projects() {
               </ul>
             </CardContent>
             <CardFooter className="flex justify-between gap-2">
-              <Button disabled={!project.github} asChild variant="outline" size="sm">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+              {project.github ? (
+                <Button asChild variant="outline" size="sm">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer">
+                    GitHub
+                  </a>
+                </Button>
+              ) : (
+                <Button disabled variant="outline" size="sm">
                   GitHub
-                </a>
-              </Button>
+                </Button>
+              )}
               <Button asChild variant="outline" size="sm">
-                <Link href={`/projects/${project.slug}`}>
-                  Project Details
-                </Link>
+                <Link href={`/projects/${project.slug}`}>Project Details</Link>
               </Button>
-              <Button disabled={!project.live} asChild size="sm">
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+              {project.live ? (
+                <Button asChild size="sm">
+                  <a href={project.live} target="_blank" rel="noopener noreferrer">
+                    Live Demo
+                  </a>
+                </Button>
+              ) : (
+                <Button disabled size="sm">
                   Live Demo
-                </a>
-              </Button>
+                </Button>
+              )}
             </CardFooter>
           </Card>
         ))}
