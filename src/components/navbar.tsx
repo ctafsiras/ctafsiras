@@ -21,7 +21,6 @@ const navLinks = [
   { href: "/blog", label: "Blog" },
   { href: "/#education", label: "Education" },
   { href: "/#contact", label: "Contact" },
-  { href: "/message", label: "Message" },
 ];
 
 export function Navbar() {
