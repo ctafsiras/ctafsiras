@@ -1,13 +1,40 @@
-import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
+import { Blog } from "@/components/blog";
+import { Contact } from "@/components/contact";
+import { Education } from "@/components/education";
 import { Experience } from "@/components/experience";
+import { Hero } from "@/components/hero";
+import LeetCode from "@/components/leetCode";
 import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
-import { Education } from "@/components/education";
-import { Contact } from "@/components/contact";
-import { Blog } from "@/components/blog";
-import LeetCode from "@/components/leetCode";
-const fallbackStats = {
+
+type SubmissionStats = {
+  difficulty: string;
+  count: number;
+  submissions: number;
+};
+
+type LeetCodeStats = {
+  totalSolved: number;
+  totalSubmissions: SubmissionStats[];
+  totalQuestions: number;
+  easySolved: number;
+  totalEasy: number;
+  mediumSolved: number;
+  totalMedium: number;
+  hardSolved: number;
+  totalHard: number;
+  ranking: number;
+  contributionPoint: number;
+  reputation: number;
+  acceptanceRate: number;
+  codeforceProblem: number;
+};
+
+const FETCH_REVALIDATE_SECONDS = 3600;
+const FETCH_TIMEOUT_MS = 5000;
+
+const fallbackStats: LeetCodeStats = {
   totalSolved: 0,
   totalSubmissions: [{ difficulty: "All", count: 0, submissions: 0 }],
   totalQuestions: 0,
@@ -24,39 +51,123 @@ const fallbackStats = {
   codeforceProblem: 0,
 };
 
-export default async function Home() {
-  let updatedStats = { ...fallbackStats };
+function logFetchEvent(
+  source: string,
+  startedAt: number,
+  details: Record<string, string | number>,
+) {
+  console.info(`[home-stats] ${source}`, {
+    durationMs: Date.now() - startedAt,
+    ...details,
+  });
+}
 
-  try {
-    const data = await fetch(
-      "https://leetcode-api-faisalshohag.vercel.app/ctafsiras",
-      { cache: "no-store" },
-    );
-    if (!data.ok) throw new Error(`LeetCode API error: ${data.status}`);
-    const stats = await data.json();
-    const allSubmissions = stats.totalSubmissions?.[0];
-    const acceptanceRate =
-      allSubmissions?.count && allSubmissions?.submissions
-        ? Number(((allSubmissions.count / allSubmissions.submissions) * 100).toFixed(2))
-        : 0;
-    updatedStats = { ...fallbackStats, ...stats, acceptanceRate };
-  } catch (e) {
-    console.error("Failed to fetch LeetCode stats:", e);
+async function fetchLeetCodeStats(): Promise<Partial<LeetCodeStats>> {
+  const startedAt = Date.now();
+  const response = await fetch(
+    "https://leetcode-api-faisalshohag.vercel.app/ctafsiras",
+    {
+      next: { revalidate: FETCH_REVALIDATE_SECONDS },
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    },
+  );
+
+  if (!response.ok) {
+    logFetchEvent("leetcode", startedAt, {
+      outcome: "http_error",
+      status: response.status,
+    });
+    throw new Error(`LeetCode API error: ${response.status}`);
   }
 
-  try {
-    const codeforceData = await fetch(
-      "https://n8n.zenix-lab.com/webhook/codeforce-stat",
-      { cache: "no-store" },
-    );
-    if (!codeforceData.ok) throw new Error(`Codeforce API error: ${codeforceData.status}`);
-    const codeforceProblem = Number((await codeforceData.text()).split(" ")[0]);
-    if (!isNaN(codeforceProblem)) {
-      updatedStats.codeforceProblem = codeforceProblem;
-      updatedStats.totalSolved += codeforceProblem;
-    }
-  } catch (e) {
-    console.error("Failed to fetch Codeforce stats:", e);
+  const stats = (await response.json()) as Partial<LeetCodeStats>;
+  const allSubmissions = stats.totalSubmissions?.[0];
+  const acceptanceRate =
+    allSubmissions?.count && allSubmissions.submissions
+      ? Number(
+          ((allSubmissions.count / allSubmissions.submissions) * 100).toFixed(2),
+        )
+      : 0;
+
+  logFetchEvent("leetcode", startedAt, {
+    outcome: "success",
+    status: response.status,
+  });
+
+  return {
+    ...stats,
+    acceptanceRate,
+  };
+}
+
+async function fetchCodeforceStats(): Promise<number> {
+  const startedAt = Date.now();
+  const response = await fetch(
+    "https://n8n.zenix-lab.com/webhook/codeforce-stat",
+    {
+      next: { revalidate: FETCH_REVALIDATE_SECONDS },
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    },
+  );
+
+  if (!response.ok) {
+    logFetchEvent("codeforce", startedAt, {
+      outcome: "http_error",
+      status: response.status,
+    });
+    throw new Error(`Codeforce API error: ${response.status}`);
+  }
+
+  const text = await response.text();
+  const codeforceProblem = Number(text.split(" ")[0]);
+
+  if (Number.isNaN(codeforceProblem)) {
+    logFetchEvent("codeforce", startedAt, {
+      outcome: "invalid_payload",
+      status: response.status,
+    });
+    throw new Error("Codeforce API returned an invalid payload");
+  }
+
+  logFetchEvent("codeforce", startedAt, {
+    outcome: "success",
+    status: response.status,
+  });
+
+  return codeforceProblem;
+}
+
+function logFetchFailure(source: string, error: unknown) {
+  const reason =
+    error instanceof Error
+      ? `${error.name}: ${error.message}`
+      : "Unknown fetch failure";
+
+  console.error(`[home-stats] ${source} failed`, {
+    timeoutMs: FETCH_TIMEOUT_MS,
+    reason,
+  });
+}
+
+export default async function Home() {
+  const updatedStats = { ...fallbackStats };
+
+  const [leetcodeResult, codeforceResult] = await Promise.allSettled([
+    fetchLeetCodeStats(),
+    fetchCodeforceStats(),
+  ]);
+
+  if (leetcodeResult.status === "fulfilled") {
+    Object.assign(updatedStats, leetcodeResult.value);
+  } else {
+    logFetchFailure("leetcode", leetcodeResult.reason);
+  }
+
+  if (codeforceResult.status === "fulfilled") {
+    updatedStats.codeforceProblem = codeforceResult.value;
+    updatedStats.totalSolved += codeforceResult.value;
+  } else {
+    logFetchFailure("codeforce", codeforceResult.reason);
   }
 
   return (
