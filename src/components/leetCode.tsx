@@ -70,7 +70,7 @@ export default function LeetCode({
 
   return (
     <section id="leetCode" className="py-16 max-w-3xl mx-auto" ref={sectionRef}>
-      <h2 className="text-3xl font-bold text-center mb-8">My LeetCode Stats</h2>
+      <h2 className="text-3xl font-bold text-center mb-8">Problem Solving Stats</h2>
       <Card>
         <CardContent>
           <div className="pt-6 grid grid-cols-2 gap-6">

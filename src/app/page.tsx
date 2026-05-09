@@ -101,40 +101,7 @@ async function fetchLeetCodeStats(): Promise<Partial<LeetCodeStats>> {
 }
 
 async function fetchCodeforceStats(): Promise<number> {
-  const startedAt = Date.now();
-  const response = await fetch(
-    "https://n8n.zenix-lab.com/webhook/codeforce-stat",
-    {
-      next: { revalidate: FETCH_REVALIDATE_SECONDS },
-      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
-    },
-  );
-
-  if (!response.ok) {
-    logFetchEvent("codeforce", startedAt, {
-      outcome: "http_error",
-      status: response.status,
-    });
-    throw new Error(`Codeforce API error: ${response.status}`);
-  }
-
-  const text = await response.text();
-  const codeforceProblem = Number(text.split(" ")[0]);
-
-  if (Number.isNaN(codeforceProblem)) {
-    logFetchEvent("codeforce", startedAt, {
-      outcome: "invalid_payload",
-      status: response.status,
-    });
-    throw new Error("Codeforce API returned an invalid payload");
-  }
-
-  logFetchEvent("codeforce", startedAt, {
-    outcome: "success",
-    status: response.status,
-  });
-
-  return codeforceProblem;
+  return 146;
 }
 
 function logFetchFailure(source: string, error: unknown) {
